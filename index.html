@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Juego Ecoeducativo</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Fuente Nunito -->
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+
+  <!-- AOS -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+
+  <style>
+    body {
+      font-family: 'Nunito', sans-serif;
+    }
+
+    html {
+  scroll-behavior: smooth;
+}
+
+    /* Animaciones Personalizadas */
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideInLeft {
+      0% { opacity: 0; transform: translateX(-100px); }
+      100% { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes zoomIn {
+      0% { opacity: 0; transform: scale(0.8); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    .fade-in { animation: fadeIn 1s ease-out forwards; }
+    .slide-in-left { animation: slideInLeft 1s ease-out forwards; }
+    .zoom-in { animation: zoomIn 1s ease-out forwards; }
+
+    /* Flip cards */
+    .flip-card {
+      perspective: 1000px;
+    }
+
+    .flip-card-inner {
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+    }
+
+    .flip-card:hover .flip-card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .flip-card-front, .flip-card-back {
+      backface-visibility: hidden;
+      border-radius: 0.5rem;
+    }
+
+    .flip-card-back {
+      transform: rotateY(180deg);
+    }
+
+    #juegos {
+      transition: background 0.5s ease;
+    }
+  </style>
+</head>
+
+<body class="bg-gradient-to-b from-[#1a1f1a] to-[#2e2f2e] text-white">
+
+<audio id="bg-audio" loop muted>
+  <source src="./Kauai 'O'o.mp3" type="audio/mpeg">
+  Tu navegador no soporta el elemento de audio.
+</audio>
+
+
+  <!-- Barra de navegación -->
+  <nav class="bg-[#1a1f1a] p-4 fixed w-full z-10 shadow-md">
+    <ul class="flex justify-center space-x-10 text-lg font-bold">
+      <li><a href="#narrativa" class="hover:text-green-400 transition">Narrativa</a></li>
+      <li><a href="#mecanicas" class="hover:text-green-400 transition">Mecánicas</a></li>
+      <li><a href="#juegos" class="hover:text-green-400 transition">Juegos</a></li>
+    </ul>
+  </nav>
+
+  <!-- Sección Narrativa -->
+<section id="narrativa" class="h-screen scroll-mt-24 bg-[#1a1f1a] pt-20 px-6 flex items-center justify-center overflow-hidden">
+  <div class="flex flex-col md:flex-row items-center justify-center gap-10 w-full max-w-6xl">
+    
+    <!-- Columna izquierda (texto) -->
+    <div 
+      class="md:w-1/2 text-center md:text-left"
+      data-aos="fade-right"
+      data-aos-duration="1000"
+      data-aos-easing="ease-in-out"
+    >
+      <h1 class="text-4xl font-bold mb-6 text-green-400">Nuestra misión verde</h1>
+      <p class="text-lg text-gray-300">
+        En un mundo cada vez más afectado por la contaminación y el cambio climático, nace la necesidad de educar sobre el cuidado del medio ambiente. Nuestra iniciativa busca fomentar el respeto por la naturaleza a través de juegos educativos e interactivos.
+      </p>
+    </div>
+
+    <!-- Columna derecha (imagen) -->
+    <div 
+      class="md:w-1/2 h-full pr-4 md:pr-8"
+      data-aos="fade-left"
+      data-aos-duration="1000"
+      data-aos-easing="ease-in-out"
+    >
+      <img 
+        src="https://i.pinimg.com/736x/6e/db/4b/6edb4b09c393a9499bad5d647ace298b.jpg" 
+        alt="Naturaleza educativa" 
+        class="w-full h-full object-cover rounded-[24px]"
+      />
+    </div>
+
+  </div>
+</section>
+
+
+
+  <!-- Sección Mecánicas -->
+<section id="mecanicas" class="h-screen scroll-mt-24 bg-green-900 py-20 text-center">
+  <h2 class="text-4xl font-bold mb-10 text-white" data-aos="fade-up">Mecánicas de Juego</h2>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8 px-10" data-aos="fade-up" data-aos-delay="100">
+
+    <!-- Tarjeta Fácil -->
+    <div class="flip-card" data-aos="zoom-in" data-aos-delay="200">
+      <div class="flip-card-inner bg-[#1a1f1a] border-4 border-blue-800 rounded-xl min-h-[400px]">
+        <div class="flip-card-front absolute inset-0 flex flex-col items-center justify-center px-6 py-8">
+          <h3 class="text-2xl font-bold text-blue-400">Nivel Fácil</h3>
+          <p class="mt-2 text-white">EcoMillonario</p>
+        </div>
+        <div class="flip-card-back absolute inset-0 bg-blue-900 flex items-center justify-center px-6 py-8">
+          <p class="text-white text-base leading-relaxed">
+            El jugador avanza a través de diez niveles, cada uno con una pregunta de dificultad creciente.
+            Cada respuesta correcta otorga una cantidad de puntos equivalente al nivel alcanzado.
+            Si el jugador responde incorrectamente, tiene la opción de comodines.
+            El juego continúa hasta que se responda bien.
+            Si responde correctamente a las 10 preguntas, gana el juego.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tarjeta Medio -->
+    <div class="flip-card" data-aos="zoom-in" data-aos-delay="300">
+      <div class="flip-card-inner bg-[#1a1f1a] border-4 border-pink-800 rounded-xl min-h-[400px]">
+        <div class="flip-card-front absolute inset-0 flex flex-col items-center justify-center px-6 py-8">
+          <h3 class="text-2xl font-bold text-pink-400">Nivel Medio</h3>
+          <p class="mt-2 text-white">EcoRuleta</p>
+        </div>
+        <div class="flip-card-back absolute inset-0 bg-pink-900 flex items-center justify-center px-6 py-8">
+          <p class="text-white text-base leading-relaxed">
+            Este juego te reta a completar seis niveles, cada uno con una pregunta de dificultad creciente.
+            Para avanzar, debes responder correctamente a la pregunta del nivel medio;
+            si fallas, la pregunta se repite hasta que aciertes.
+            Cada respuesta correcta te otorga eco puntos.
+            Ganas si logras responder correctamente las seis eco preguntas.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tarjeta Difícil -->
+    <div class="flip-card" data-aos="zoom-in" data-aos-delay="400">
+      <div class="flip-card-inner bg-[#1a1f1a] border-4 border-purple-800 rounded-xl min-h-[400px]">
+        <div class="flip-card-front absolute inset-0 flex flex-col items-center justify-center px-6 py-8">
+          <h3 class="text-2xl font-bold text-purple-400">Nivel Difícil</h3>
+          <p class="mt-2 text-white">EcoTest</p>
+        </div>
+        <div class="flip-card-back absolute inset-0 bg-purple-900 flex items-center justify-center px-6 py-8">
+          <p class="text-white text-base leading-relaxed">
+            En este juego, la ruleta es el eje central: al girarla, no se obtienen preguntas, sino un color determinara la pregunta y los puntos que el jugador puede obtener si la responde bien.
+            Ganas el juego si pasas las 10 eco preguntas.
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+  <!-- Sección Juegos -->
+  <section id="juegos" class="min-h-screen scroll-mt-24 transition-colors duration-700 bg-[#1a1f1a] flex items-center justify-center py-20 px-4">
+    <div class="max-w-7xl w-full text-center">
+      <h2 class="text-4xl font-bold text-green-400 mb-12" data-aos="fade-up">Explora nuestros juegos</h2>
+      <div class="grid md:grid-cols-3 gap-8" id="juegos-cards">
+
+        <!-- Juego 1 -->
+        <a href="https://view.genially.com/688a70017ff1a3947752cbe7/interactive-content-eco-millonario" target="_blank"
+          class="bg-[#1a1f1a] border-4 border-blue-800 rounded-xl p-6 text-white transition-all duration-500 hover:scale-105 hover:shadow-2xl card-hover"
+          data-aos="zoom-in"
+          data-color="rgba(15,28,59,1), rgba(21,42,89,1)">
+          <h3 class="text-xl font-semibold mb-3">Guardianes del Bosque</h3>
+          <img src="https://www.antena3.com/newa3flash/modulos_blancos/qqsm/A3Quiz4/img/Logo_WWTBAM_Spain.png" class="w-full rounded mb-3" alt="Juego 1" />
+          <h4 class="text-lg font-bold text-blue-400">Protege los árboles</h4>
+          <p class="text-gray-300">Pon a prueba tus conocimientos ambientales en formato concurso</p>
+        </a>
+
+        <!-- Juego 2 -->
+        <a href="https://view.genially.com/688a7f284d9effd526bf070c/interactive-content-eco-ruleta" target="_blank" target="_blank"
+          class="bg-[#2e2f2e] border-4 border-pink-800 rounded-xl p-6 text-white transition-all duration-500 hover:scale-105 hover:shadow-2xl card-hover"
+          data-aos="zoom-in"
+          data-color="rgba(60,26,45,1), rgba(110,45,82,1)">
+          <h3 class="text-xl font-semibold mb-3">EcoAventura</h3>
+          <img src="https://images.genially.com/59e059d30b9c21060cb4c2ec/e05565ac-6463-4f62-b5e2-2b31f30bd063.png" class="w-full rounded mb-3" alt="Juego 2" />
+          <h4 class="text-lg font-bold text-pink-400">Construye Verde</h4>
+          <p class="text-gray-300">Gira la ruleta y responde preguntas sorpresa sobre el medio ambiente.</p>
+        </a>
+
+        <!-- Juego 3 -->
+        <a href="https://view.genially.com/688a88239f23d343eb480e2e/interactive-content-ruleta-de-eco-preguntas" target="_blank"
+          class="bg-[#1a1f1a] border-4 border-red-800 rounded-xl p-6 text-white transition-all duration-500 hover:scale-105 hover:shadow-2xl card-hover"
+          data-aos="zoom-in"
+          data-color="rgba(59,26,26,1), rgba(115,42,42,1)">
+          <h3 class="text-xl font-semibold mb-3">RetoVerde</h3>
+          <img src="https://img.genial.ly/567997d21561e908ac2cf462/7b287696-544e-4bfa-8c42-b3363e5adac4.png" class="w-full rounded mb-3" alt="Juego 3" />
+          <h4 class="text-lg font-bold text-red-400">Clasifica bien</h4>
+          <p class="text-gray-300">Desafía tus conocimientos con un test técnico de impacto ambiental.</p>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Script para cambiar fondo dinámico en sección Juegos -->
+  <script>
+    const juegosSection = document.getElementById("juegos");
+    const cards = document.querySelectorAll(".card-hover");
+
+    cards.forEach(card => {
+      card.addEventListener("mouseenter", () => {
+        const gradient = card.getAttribute("data-color");
+        juegosSection.style.background = `linear-gradient(135deg, ${gradient})`;
+      });
+
+      card.addEventListener("mouseleave", () => {
+        juegosSection.style.background = '#1a1f1a';
+      });
+    });
+  </script>
+
+  <!-- AOS -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+  AOS.init({
+    duration: 1000,
+    once: false, // permite que se repita
+    mirror: true // repite animación en scroll hacia arriba
+  });
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const audio = document.getElementById("bg-audio");
+    let audioInitialized = false;
+
+    function iniciarAudio() {
+      if (!audioInitialized) {
+        audio.muted = false;
+        audio.volume = 0.2;
+        audio.play().catch(() => {
+          // En caso de bloqueo, se mantiene en silencio
+          console.warn("El navegador bloqueó el intento de reproducir audio.");
+        });
+        audioInitialized = true;
+      }
+    }
+
+    // Iniciar audio al primer clic o scroll
+    window.addEventListener("click", iniciarAudio, { once: true });
+    window.addEventListener("scroll", iniciarAudio, { once: true });
+
+    // Pausar si la ventana pierde el foco
+    window.addEventListener("blur", () => {
+      if (audioInitialized) {
+        audio.pause();
+      }
+    });
+
+    // Reanudar si la ventana recupera el foco
+    window.addEventListener("focus", () => {
+      if (audioInitialized) {
+        audio.play();
+      }
+    });
+  });
+</script>
+
+
+</body>
+</html>
