@@ -75,7 +75,7 @@
 <body class="bg-gradient-to-b from-[#1a1f1a] to-[#2e2f2e] text-white">
 
 <audio id="bg-audio" loop muted>
-  <source src="./Kauai 'O'o.mp3" type="audio/mpeg">
+  <source src="./K.mp3" type="audio/mpeg">
   Tu navegador no soporta el elemento de audio.
 </audio>
 
@@ -269,7 +269,7 @@
     function iniciarAudio() {
       if (!audioInitialized) {
         audio.muted = false;
-        audio.volume = 0.2;
+        audio.volume = 0.8;
         audio.play().catch(() => {
           // En caso de bloqueo, se mantiene en silencio
           console.warn("El navegador bloqueó el intento de reproducir audio.");
